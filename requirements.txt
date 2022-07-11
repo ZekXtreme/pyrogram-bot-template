@@ -1,0 +1,5 @@
+bs4
+pyrogram==2.0.30
+python-dotenv
+requests
+Tgcrypto
