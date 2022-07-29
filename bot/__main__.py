@@ -1,3 +1,4 @@
+from contextlib import suppress
 from pyrogram.client import Client
 from pyrogram import __version__
 from pyrogram.types import BotCommand
@@ -29,7 +30,8 @@ class Bot(Client):
         await super().start()
         me = await self.get_me()
         un = '@' + me.username
-        await self.send_message(chat_id=Config.LOG_CHANNEL, text="**Bot Started**")
+        with suppress(Exception):
+            await self.send_message(chat_id=Config.LOG_CHANNEL, text="**Bot Started**")
         await self.set_bot_commands(botcmds)
         LOGGER.info(
             f"Pyrogram v{__version__} (Layer {layer}) started on {un}.")
